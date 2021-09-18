@@ -70,7 +70,7 @@ public class mainController {
         model.addAttribute("page", page);
         model.addAttribute("totalPage", products.getTotalPages());
 
-        return "/listProduct";
+        return "listProduct";
     }
 
     @GetMapping("/detail")
@@ -86,7 +86,7 @@ public class mainController {
         product.setImageList(images);
         model.addAttribute("product", product);
 
-        return "/detail";
+        return "detail";
     }
 
     @GetMapping("/add-to-cart")
@@ -140,7 +140,7 @@ public class mainController {
         }
         model.addAttribute("listCart", listCart);
         model.addAttribute("totalMoney", MathFunction.getMoney(totalMoney));
-        return "/listCart";
+        return "listCart";
 
     }
 
@@ -162,7 +162,7 @@ public class mainController {
             return "/404";
         }
         session.setAttribute("listCart", listCart);
-        return "/listCart";
+        return "listCart";
 
     }
 
@@ -173,14 +173,14 @@ public class mainController {
             listCart.get(i).setQuantity(Integer.parseInt(req.getParameter("quantity" + i)));
         }
         session.setAttribute("listCart" , listCart);
-        return"redirect:/carts";
+        return"redirect:carts";
     }
 
     @GetMapping("/checkout")
     public String chekout(Model model, HttpSession session) {
         List<Cart> listCart = (List<Cart>) session.getAttribute("listCart");
         if (listCart == null || listCart.size() == 0) {
-            return "/emptyCart";
+            return "emptyCart";
         }
         //tính tổng tiền
         double totalMoney = 0;
@@ -190,7 +190,7 @@ public class mainController {
         model.addAttribute("listCart", listCart);
         model.addAttribute("totalMoney", MathFunction.getMoney(totalMoney));
 
-        return "/checkout";
+        return "checkout";
     }
 
     @GetMapping("/prepare-shipping")
@@ -199,7 +199,7 @@ public class mainController {
 
 
         // tự làm
-        return "/prepareShipping";
+        return "prepareShipping";
     }
     @GetMapping("/search")
     public String search(Model model, @RequestParam(value = "page", defaultValue = "1") Integer page,
@@ -213,7 +213,7 @@ public class mainController {
         model.addAttribute("categories", categories);
         model.addAttribute("page", page);
         model.addAttribute("totalPage", products.getTotalPages());
-        return "/listProduct";
+        return "listProduct";
     }
 
 
