@@ -37,7 +37,7 @@ public class mainController {
 
     @GetMapping("/")
     public String index() {
-        return "/home";
+        return "home";
     }
 
     @GetMapping("/products")
