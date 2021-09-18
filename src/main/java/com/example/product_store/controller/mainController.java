@@ -195,6 +195,10 @@ public class mainController {
 
     @GetMapping("/prepare-shipping")
     public String prepareShipping() {
+
+
+
+        // tự làm
         return "/prepareShipping";
     }
     @GetMapping("/search")
