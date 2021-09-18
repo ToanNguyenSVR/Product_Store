@@ -37,7 +37,7 @@ public class mainController {
 
     @GetMapping("/")
     public String index() {
-        return "/home";
+        return "home";
     }
 
     @GetMapping("/products")
@@ -70,7 +70,7 @@ public class mainController {
         model.addAttribute("page", page);
         model.addAttribute("totalPage", products.getTotalPages());
 
-        return "/listProduct";
+        return "listProduct";
     }
 
     @GetMapping("/detail")
@@ -86,7 +86,7 @@ public class mainController {
         product.setImageList(images);
         model.addAttribute("product", product);
 
-        return "/detail";
+        return "detail";
     }
 
     @GetMapping("/add-to-cart")
@@ -122,7 +122,7 @@ public class mainController {
         }
 
         session.setAttribute("listCart", listCart);
-        return "redirect:/carts";
+        return "redirect:carts";
 
 
     }
@@ -140,7 +140,7 @@ public class mainController {
         }
         model.addAttribute("listCart", listCart);
         model.addAttribute("totalMoney", MathFunction.getMoney(totalMoney));
-        return "/listCart";
+        return "listCart";
 
     }
 
@@ -148,7 +148,7 @@ public class mainController {
     public String deleteCart(Model model, HttpSession session, @RequestParam("productId") Long productId) {
         List<Cart> listCart = (List<Cart>) session.getAttribute("listCart");
         if (listCart == null || listCart.size() == 0) {
-            return "/emptyCart";
+            return "emptyCart";
         }
         boolean isError = true;
         for (Cart c : listCart) {
@@ -162,7 +162,7 @@ public class mainController {
             return "/404";
         }
         session.setAttribute("listCart", listCart);
-        return "/listCart";
+        return "listCart";
 
     }
 
@@ -173,7 +173,7 @@ public class mainController {
             listCart.get(i).setQuantity(Integer.parseInt(req.getParameter("quantity" + i)));
         }
         session.setAttribute("listCart" , listCart);
-        return"redirect:/carts";
+        return"redirect:carts";
     }
 
     @GetMapping("/checkout")
@@ -190,7 +190,7 @@ public class mainController {
         model.addAttribute("listCart", listCart);
         model.addAttribute("totalMoney", MathFunction.getMoney(totalMoney));
 
-        return "/checkout";
+        return "checkout";
     }
 
     @GetMapping("/prepare-shipping")
@@ -213,7 +213,7 @@ public class mainController {
         model.addAttribute("categories", categories);
         model.addAttribute("page", page);
         model.addAttribute("totalPage", products.getTotalPages());
-        return "/listProduct";
+        return "listProduct";
     }
 
 
