@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<!--  main-fragment (title, otherStaticResources, header, nav, mainContent, footer)  -->
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layouts/main-layout :: main-fragment(
+                                                ~{::title},
+                                                ~{:: #empty-static-resources},
+                                                ~{:: #empty-nav},
+                                                ~{:: #empty-main-content},
+                                                ~{:: #empty-footer}
+                                               )}">
+
+<head>
+    <title>Empty Cart</title>
+
+</head>
+<body>
+
+
+<!--<div id="empty-nav" th:replace="~{/fragments/app-fragments :: nav-default}">-->
+<!--    Home Nav-->
+<!--</div>-->
+
+<div id="empty-main-content">
+    <div class="alert alert-danger text-center" role="alert">
+        List Cart is Empty
+    </div>
+    <div class="text-center"><a class="btn btn-outline-success" th:href="@{/products}">Shopping now</a></div>
+</div>
+
+
+
+<!--<div id="empty-footer" th:replace="~{/fragments/app-fragments :: copyright}">-->
+<!--    Footer-->
+<!--</div>-->
+
+
+</body>
+</html>

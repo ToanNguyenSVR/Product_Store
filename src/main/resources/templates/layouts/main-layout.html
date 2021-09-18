@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:fragment="main-fragment (title, otherStaticResources, nav, mainContent, footer)">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+          integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <title th:replace="${title}">Page 1 Title</title>
+
+    <!-- Other javascript, css source files -->
+    <th:block th:replace="${otherStaticResources} ?: ~{}"></th:block>
+
+</head>
+<body>
+
+
+<nav th:replace="${nav} ?: ~{}">
+</nav>
+
+<article th:replace="${mainContent} ?: ~{}">
+</article>
+
+<footer th:insert="${footer} ?: ~{}">
+</footer>
+
+
+</body>
+</html>

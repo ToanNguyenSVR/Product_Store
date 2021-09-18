@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+
+<!--  main-fragment (title, otherStaticResources, header, nav, mainContent, footer)  -->
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layouts/main-layout :: main-fragment(
+                                                ~{::title},
+                                                ~{:: #prepare-shipping-static-resources},
+                                                ~{:: #prepare-shipping-nav},
+                                                ~{:: #prepare-shipping-main-content},
+                                                ~{:: #prepare-shipping-footer}
+                                               )}">
+
+<head>
+    <title>Title of Home Page</title>
+
+    <th:block id="prepare-shipping-static-resources">
+
+        <script type="text/javascript" src="../static/home.js" th:src="@{/home.js}"></script>
+        <link rel="stylesheet" type="text/css" href="../static/home.css" th:href="@{/home.css}"/>
+
+    </th:block>
+
+</head>
+<body>
+
+
+<div id="prepare-shipping-nav" th:replace="~{/fragments/app-fragments :: nav-default}">
+    Home Nav
+</div>
+
+<div id="prepare-shipping-main-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 mt-5">
+                <div class="card">
+                    <div class="card-body mt-5" style="border: 1px solid #ced4da;border-radius: 5px">
+                        <h4 class="mt-3">List of Product</h4>
+                        <table class="w-100 table table-striped mt-3">
+                            <tbody>
+                            <tr>
+                                <th>STT</th>
+                                <th>Image</th>
+                                <th>Name of Product</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total Price</th>
+                            </tr>
+
+                            <tr th:each="c:${listCart}">
+                                <td>1</td>
+                                <td>
+                                    <img th:src="@{'/images/'+*{c.productImageUrl}}" style="width: 100px">
+                                </td>
+                                <td th:text="*{c.productName}">Repair Tool</td>
+                                <td th:text="'$'+*{c.productPrice}">
+                                    $16.61
+                                </td>
+                                <td th:text="*{c.quantity}">
+                                    1
+                                </td>
+                                <td th:text="*{c.quantity*c.productPrice}">
+                                    $16.61
+                                </td>
+                            </tr>
+
+
+                            </tbody>
+                        </table>
+                        <hr>
+                        <div class="text-right">
+                            <h4 th:text="'Total price:$'+*{totalMoney}">Total price:$55.77</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="mt-5"><a href="./thanks.html" class="btn btn-outline-success ml-auto w-100">Shipping
+                            to this address</a></div>
+                        <div class="mt-3"><a onclick="document.getElementById('address').style.display = 'block'"
+                                             class="btn btn-outline-info ml-auto w-100">Shipping to another address</a></div>
+                    </div>
+
+                    <div class="col-md-9 mt-3">
+                        <form id="inf" action="prepare-shipping" method="post"
+                              style="border: 1px solid #ced4da !important; border-radius: 5px !important">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 style="color: orange">Adress Shipping</h4>
+                                    <h6 style="overflow: visible !important">Products will be delivered at the address
+                                        below</h6><br>
+                                    <div>Full Name:<span class="ml-4"> <b th:text="${name}">Nguyễn Thị Ánh</b><span></span></span></div>
+                                    <input type="hidden" name="name" value="Nguyễn Thị Ánh">
+                                    <input type="hidden" name="mobile" value="0123456789">
+                                    <input type="hidden" name="address" value="Thái Bình">
+                                    <input type="hidden" name="note" value="Hàng dễ vỡ, ship cẩn thận nhé !!!!!!">
+                                    <div>Phone number: <span class="ml-4" th:text="${phone}">0123456789<span></span></span></div>
+                                    <div>Address: <span class="ml-4" th:text="${address}">Thái Bình</span></div>
+                                    <div>Note <span class="ml-4" th:text="${note}">Hàng dễ vỡ, ship cẩn thận nhé !!!!!!</span></div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+
+                </div>
+                <div class="row">
+
+                    <div class="col-md-3">
+
+                    </div>
+                    <div id="address" class="col-md-9 mt-5" style="display: none;">
+                        <div class="card">
+                            <div class="card-body" style="border: 1px solid #ced4da;border-radius: 5px !important">
+                                <h4 class="mt-3" style="color: orange">Infomation of Customer</h4>
+                                <div class="card mt-3">
+                                    <div class="card-body">
+                                        <form action="./thanks.html">
+                                            <div class="form-group">
+                                                <label for="name">Full Name</label>
+                                                <input type="text" name="name" class="form-control"
+                                                       placeholder="Enter name">
+                                                <small id="emailHelp" class="form-text text-muted">We'll never share
+                                                    your email with anyone else.</small>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="sdt">Phone number</label>
+                                                <input type="number" name="mobile" class="form-control"
+                                                       placeholder="enter phone number">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="address">Address</label>
+                                                <textarea class="form-control" rows="3" name="address"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="address">Note</label>
+                                                <textarea class="form-control" rows="3" name="note"></textarea>
+                                            </div>
+
+                                            <button type="submit" class="btn btn-success w-100">Accept</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div id="prepare-shipping-footer" th:replace="~{/fragments/app-fragments :: copyright}">
+    Footer
+</div>
+
+
+</body>
+</html>

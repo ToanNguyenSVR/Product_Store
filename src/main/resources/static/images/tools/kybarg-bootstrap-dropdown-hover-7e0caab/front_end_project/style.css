@@ -1,0 +1,92 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+
+.navbar-brand{
+    font-family: cursive;
+    font-size: 200%;
+    color: #fff !important;
+    text-align: center;
+    -webkit-animation: glow 1s ease-in-out infinite alternate;
+    -moz-animation: glow 1s ease-in-out infinite alternate;
+    animation: glow 1s ease-in-out infinite alternate;
+  }
+  
+  @-webkit-keyframes glow {
+    from {
+      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+    }
+    
+    to {
+      text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+    }
+  }
+
+
+
+
+  .search-box{
+    position: absolute;
+    top: 50%;
+    left: 90%;
+    transform: translate(-50%,-50%);
+    background: #535c68;
+    height: 40px;
+    border-radius: 40px;
+    padding: 10;
+}
+.search-box:hover > .search-txt{
+    width: 240px;
+    padding: 0 6px;
+
+}
+.search-box:hover > .search-btn{
+    background: white;
+    vertical-align: center;
+    align-items: center;
+}
+.search-btn{
+    color: #e84118;
+    position: relative;
+    float: right;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    align-items: center;
+    border-radius: 50%;
+    display: flex;
+    vertical-align: center;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
+    
+}
+.search-txt{
+  padding: 0 10px;
+    border: none;
+    background: none;
+    outline: none;
+    float: left;
+    padding: 0;
+    color: white;
+    font-size: 16px;
+    transition: 0.4s;
+    line-height: 40px;
+    width: 0px;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
